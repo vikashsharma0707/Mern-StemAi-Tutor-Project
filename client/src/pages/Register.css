@@ -1,0 +1,100 @@
+.register-page {
+  min-height: calc(100vh - 64px - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 420px;
+}
+
+.register-brand {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.register-brand svg {
+  color: var(--accent-indigo);
+  margin-bottom: 0.5rem;
+}
+
+.register-brand h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.register-brand p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.register-form {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+
+.register-form h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.register-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.register-field {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.register-field-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.register-field input {
+  padding-left: 2.75rem;
+}
+
+.register-toggle-password {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  color: var(--text-muted);
+  padding: 0.25rem;
+}
+
+.register-toggle-password:hover {
+  color: var(--text-primary);
+}
+
+.register-form .btn {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.register-switch {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.register-switch a {
+  color: var(--accent-cyan);
+}

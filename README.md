@@ -1,160 +1,112 @@
-# STEMAI Tutor — AI-Powered STEM Education Platform
+# STEMAI Tutor
 
-An intelligent tutoring web application that helps students learn STEM subjects (Math, Physics, Chemistry, Biology, Computer Science) using AI. Built with React, Express, MongoDB, and OpenRouter API.
-
-## Features
-
-- **Authentication** — Register & Login with JWT protection
-- **Dashboard** — Welcome stats, quick actions, recent activity
-- **AI Chat Tutor** — Real-time chat with step-by-step explanations
-- **Practice Questions** — AI-generated MCQs by subject, topic, difficulty
-- **Image Question Solver** — Upload photo, get step-by-step solution via vision model
-- **History & Progress** — Track all learning activity and accuracy
+A modern MERN stack web application for STEM education.
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 18, Vite, React Router, Axios |
-| Backend | Node.js, Express.js |
-| Database | MongoDB with Mongoose |
-| AI | OpenRouter API (Claude 3.5 Sonnet / Gemini Flash) |
-| Auth | JWT, bcryptjs |
-| Styling | Pure External CSS (dark theme) |
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- MongoDB (local or Atlas)
-- OpenRouter API key
-
-### 1. Clone and Install
-
-```bash
-# Install frontend dependencies
-npm install
-
-# Install backend dependencies
-cd backend
-npm init -y
-npm install express mongoose dotenv cors bcryptjs jsonwebtoken axios multer
-```
-
-### 2. Configure Environment
-
-Copy the example env file and add your keys:
-
-```bash
-cp backend/.env.example backend/.env
-```
-
-Edit `backend/.env`:
-- Set `MONGODB_URI` to your MongoDB connection string
-- Set `JWT_SECRET` to a secure random string
-- Set `OPENROUTER_API_KEY` to your OpenRouter API key
-
-### 3. Start the Backend
-
-```bash
-cd backend
-node server.js
-```
-
-### 4. Start the Frontend
-
-```bash
-npm run dev
-```
-
-The app runs at `http://localhost:5173`.
+- **Frontend**: React.js, Vite, React Router DOM, Axios
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB with Mongoose
+- **Authentication**: JWT, bcryptjs
 
 ## Project Structure
 
 ```
 stemai-tutor/
-├── backend/
-│   ├── config/db.js
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── chatController.js
-│   │   ├── practiceController.js
-│   │   ├── imageController.js
-│   │   └── historyController.js
-│   ├── middleware/auth.js
-│   ├── models/
-│   │   ├── User.js
-│   │   ├── Chat.js
-│   │   ├── Practice.js
-│   │   └── ImageSolution.js
-│   ├── routes/
-│   │   ├── auth.js
-│   │   ├── chat.js
-│   │   ├── practice.js
-│   │   ├── image.js
-│   │   └── history.js
-│   ├── utils/openrouter.js
+├── client/                 # React frontend
+│   ├── public/
+│   ├── src/
+│   │   ├── components/     # Reusable components
+│   │   ├── pages/          # Page components
+│   │   ├── services/       # API services
+│   │   ├── styles/         # Global CSS
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
+│
+├── server/                 # Express backend
+│   ├── config/             # Database config
+│   ├── controllers/        # Route controllers
+│   ├── middleware/         # Auth middleware
+│   ├── models/             # Mongoose models
+│   ├── routes/             # API routes
+│   ├── uploads/            # File uploads
 │   ├── .env
-│   ├── .env.example
-│   └── server.js
-├── frontend/
-│   ├── public/favicon.svg
-│   └── src/
-│       ├── components/
-│       │   ├── Sidebar.jsx
-│       │   ├── Sidebar.css
-│       │   ├── MobileNav.jsx
-│       │   └── MobileNav.css
-│       ├── pages/
-│       │   ├── Login.jsx
-│       │   ├── Register.jsx
-│       │   ├── Auth.css
-│       │   ├── Dashboard.jsx
-│       │   ├── Dashboard.css
-│       │   ├── ChatTutor.jsx
-│       │   ├── ChatTutor.css
-│       │   ├── Practice.jsx
-│       │   ├── Practice.css
-│       │   ├── ImageSolver.jsx
-│       │   ├── ImageSolver.css
-│       │   ├── History.jsx
-│       │   └── History.css
-│       ├── styles/global.css
-│       ├── utils/api.js
-│       ├── App.jsx
-│       └── main.jsx
-├── index.html
-├── vite.config.js
-├── package.json
+│   ├── server.js
+│   └── package.json
+│
 └── README.md
+```
+
+## Installation
+
+### Prerequisites
+- Node.js 18+
+- MongoDB (local or Atlas)
+
+### Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd stemai-tutor
+   ```
+
+2. **Install server dependencies**
+   ```bash
+   cd server
+   npm install
+   ```
+
+3. **Configure environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your MongoDB connection string and JWT secret
+   ```
+
+4. **Install client dependencies**
+   ```bash
+   cd ../client
+   npm install
+   ```
+
+## Running the Application
+
+### Development
+
+**Terminal 1 - Backend:**
+```bash
+cd server
+npm run dev
+```
+
+**Terminal 2 - Frontend:**
+```bash
+cd client
+npm run dev
+```
+
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:5000
+
+### Production Build
+
+```bash
+cd client
+npm run build
 ```
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register new user |
-| POST | `/api/auth/login` | Login |
-| GET | `/api/auth/profile` | Get user profile |
-| PUT | `/api/auth/stats` | Update user stats |
-| POST | `/api/chat` | Send message to AI tutor |
-| GET | `/api/chat` | Get chat history |
-| GET | `/api/chat/:id` | Get specific chat |
-| POST | `/api/practice/generate` | Generate practice questions |
-| POST | `/api/practice/submit` | Submit practice answers |
-| GET | `/api/practice` | Get practice history |
-| POST | `/api/image/solve` | Solve question from image |
-| GET | `/api/image/history` | Get image solution history |
-| GET | `/api/history` | Get all activity history |
-
-## Design
-
-- Dark theme: `#0f172a` background, `#1e293b` cards
-- Primary: Indigo `#6366f1`, Accent: Cyan `#22d3ee`
-- Inter font family
-- Fully responsive (mobile + desktop)
-- Sidebar navigation on desktop, hamburger on mobile
+| Method | Endpoint       | Description       | Auth |
+|--------|----------------|-------------------|------|
+| POST   | /api/auth/register | Register user  | No   |
+| POST   | /api/auth/login    | Login user     | No   |
+| GET    | /api/auth/me       | Get current user | Yes |
+| GET    | /api/users/profile | Get profile    | Yes  |
+| PUT    | /api/users/profile | Update profile | Yes  |
 
 ## License
 
