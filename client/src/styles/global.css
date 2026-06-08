@@ -162,6 +162,27 @@ select {
   border-color: var(--accent-indigo);
 }
 
+.btn-cyan {
+  background: var(--accent-cyan);
+  color: var(--bg-primary);
+}
+
+.btn-cyan:hover:not(:disabled) {
+  background: var(--accent-cyan-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-danger {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--accent-red);
+  border: 1px solid transparent;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.25);
+}
+
 .btn-lg {
   padding: 0.85rem 2rem;
   font-size: 1.05rem;

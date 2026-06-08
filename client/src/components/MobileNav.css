@@ -1,0 +1,6 @@
+.mobile-nav { display: none; justify-content: space-between; align-items: center; padding: 1rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); margin-bottom: 1.5rem; }
+.mobile-nav-menu { background: none; color: var(--text-primary); padding: 0.25rem; }
+.mobile-nav-brand { display: flex; align-items: center; gap: 0.4rem; color: var(--text-primary); font-weight: 600; }
+.mobile-nav-brand svg { color: var(--accent-indigo); }
+.mobile-nav-user { display: flex; align-items: center; gap: 0.35rem; color: var(--text-muted); font-size: 0.85rem; }
+@media (max-width: 768px) { .mobile-nav { display: flex; } }

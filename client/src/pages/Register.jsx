@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { GraduationCap, User, Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import { supabase } from '../utils/supabase';
+import API from '../services/api';
 import './Register.css';
 
 export default function Register({ setUser }) {
@@ -14,126 +14,61 @@ export default function Register({ setUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
-    if (form.password !== form.confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
-    if (form.password.length < 6) {
-      setError('Password must be at least 6 characters');
-      return;
-    }
-
+    if (form.password !== form.confirmPassword) { setError('Passwords do not match'); return; }
+    if (form.password.length < 6) { setError('Password must be at least 6 characters'); return; }
     setLoading(true);
     try {
-      const { data, error: authError } = await supabase.auth.signUp({
-        email: form.email,
-        password: form.password,
-      });
-      if (authError) throw authError;
-
-      // Create profile
-      await supabase.from('profiles').insert({
-        id: data.user.id,
-        name: form.name,
-        email: form.email,
-        streak: 0,
-        topics_learned: 0,
-        accuracy: 0,
-      });
-
-      const userData = {
-        id: data.user.id,
-        email: data.user.email,
-        name: form.name,
-        streak: 0,
-        topicsLearned: 0,
-        accuracy: 0,
-      };
-
-      localStorage.setItem('user', JSON.stringify(userData));
-      setUser(userData);
-      navigate('/dashboard');
+      const { data } = await API.post('/auth/register', { name: form.name, email: form.email, password: form.password });
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      setUser(data.user);
+      navigate('/');
     } catch (err) {
-      setError(err.message || 'Registration failed');
+      setError(err.response?.data?.message || 'Registration failed');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="register-page">
-      <div className="register-container">
-        <div className="register-brand">
+    <div className="auth-page">
+      <div className="auth-bg-shapes">
+        <div className="auth-shape auth-shape-1" />
+        <div className="auth-shape auth-shape-2" />
+      </div>
+      <div className="auth-container">
+        <div className="auth-brand">
           <GraduationCap size={40} />
           <h1>STEMAI Tutor</h1>
           <p>AI-Powered STEM Education Platform</p>
         </div>
-
-        <form className="register-form" onSubmit={handleSubmit}>
+        <form className="auth-form" onSubmit={handleSubmit}>
           <h2>Create Account</h2>
-          <p className="register-subtitle">Start your STEM learning journey</p>
-
+          <p className="auth-subtitle">Start your STEM learning journey</p>
           {error && <div className="alert alert-error">{error}</div>}
-
-          <div className="register-field">
-            <User size={18} className="register-field-icon" />
-            <input
-              type="text"
-              placeholder="Full name"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              required
-            />
+          <div className="auth-field">
+            <User size={18} className="auth-field-icon" />
+            <input type="text" placeholder="Full name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
           </div>
-
-          <div className="register-field">
-            <Mail size={18} className="register-field-icon" />
-            <input
-              type="email"
-              placeholder="Email address"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              required
-            />
+          <div className="auth-field">
+            <Mail size={18} className="auth-field-icon" />
+            <input type="email" placeholder="Email address" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
           </div>
-
-          <div className="register-field">
-            <Lock size={18} className="register-field-icon" />
-            <input
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Password (min 6 characters)"
-              value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
-              required
-            />
-            <button
-              type="button"
-              className="register-toggle-password"
-              onClick={() => setShowPassword(!showPassword)}
-            >
+          <div className="auth-field">
+            <Lock size={18} className="auth-field-icon" />
+            <input type={showPassword ? 'text' : 'password'} placeholder="Password (min 6 characters)" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
+            <button type="button" className="auth-toggle-password" onClick={() => setShowPassword(!showPassword)}>
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
-
-          <div className="register-field">
-            <Lock size={18} className="register-field-icon" />
-            <input
-              type="password"
-              placeholder="Confirm password"
-              value={form.confirmPassword}
-              onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-              required
-            />
+          <div className="auth-field">
+            <Lock size={18} className="auth-field-icon" />
+            <input type="password" placeholder="Confirm password" value={form.confirmPassword} onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })} required />
           </div>
-
-          <button type="submit" className="btn btn-primary btn-lg" disabled={loading}>
+          <button type="submit" className="btn btn-primary btn-lg auth-submit" disabled={loading}>
             {loading ? <div className="spinner spinner-sm" /> : 'Create Account'}
           </button>
-
-          <p className="register-switch">
-            Already have an account? <Link to="/login">Sign in</Link>
-          </p>
+          <p className="auth-switch">Already have an account? <Link to="/login">Sign in</Link></p>
         </form>
       </div>
     </div>

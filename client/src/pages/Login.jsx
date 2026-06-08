@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { GraduationCap, Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import { supabase } from '../utils/supabase';
+import API from '../services/api';
 import './Login.css';
 
 export default function Login({ setUser }) {
@@ -16,89 +16,49 @@ export default function Login({ setUser }) {
     setError('');
     setLoading(true);
     try {
-      const { data, error: authError } = await supabase.auth.signInWithPassword({
-        email: form.email,
-        password: form.password,
-      });
-      if (authError) throw authError;
-
-      // Fetch profile
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', data.user.id)
-        .single();
-
-      const userData = {
-        id: data.user.id,
-        email: data.user.email,
-        name: profile?.name || data.user.email?.split('@')[0],
-        streak: profile?.streak || 0,
-        topicsLearned: profile?.topics_learned || 0,
-        accuracy: profile?.accuracy || 0,
-      };
-
-      localStorage.setItem('user', JSON.stringify(userData));
-      setUser(userData);
-      navigate('/dashboard');
+      const { data } = await API.post('/auth/login', form);
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      setUser(data.user);
+      navigate('/');
     } catch (err) {
-      setError(err.message || 'Login failed. Please check your credentials.');
+      setError(err.response?.data?.message || 'Login failed');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="login-page">
-      <div className="login-container">
-        <div className="login-brand">
+    <div className="auth-page">
+      <div className="auth-bg-shapes">
+        <div className="auth-shape auth-shape-1" />
+        <div className="auth-shape auth-shape-2" />
+      </div>
+      <div className="auth-container">
+        <div className="auth-brand">
           <GraduationCap size={40} />
           <h1>STEMAI Tutor</h1>
           <p>AI-Powered STEM Education Platform</p>
         </div>
-
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="auth-form" onSubmit={handleSubmit}>
           <h2>Welcome Back</h2>
-          <p className="login-subtitle">Sign in to continue learning</p>
-
+          <p className="auth-subtitle">Sign in to continue learning</p>
           {error && <div className="alert alert-error">{error}</div>}
-
-          <div className="login-field">
-            <Mail size={18} className="login-field-icon" />
-            <input
-              type="email"
-              placeholder="Email address"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              required
-            />
+          <div className="auth-field">
+            <Mail size={18} className="auth-field-icon" />
+            <input type="email" placeholder="Email address" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
           </div>
-
-          <div className="login-field">
-            <Lock size={18} className="login-field-icon" />
-            <input
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Password"
-              value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
-              required
-            />
-            <button
-              type="button"
-              className="login-toggle-password"
-              onClick={() => setShowPassword(!showPassword)}
-            >
+          <div className="auth-field">
+            <Lock size={18} className="auth-field-icon" />
+            <input type={showPassword ? 'text' : 'password'} placeholder="Password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
+            <button type="button" className="auth-toggle-password" onClick={() => setShowPassword(!showPassword)}>
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
-
-          <button type="submit" className="btn btn-primary btn-lg" disabled={loading}>
+          <button type="submit" className="btn btn-primary btn-lg auth-submit" disabled={loading}>
             {loading ? <div className="spinner spinner-sm" /> : 'Sign In'}
           </button>
-
-          <p className="login-switch">
-            Don't have an account? <Link to="/register">Create one</Link>
-          </p>
+          <p className="auth-switch">Don't have an account? <Link to="/register">Create one</Link></p>
         </form>
       </div>
     </div>

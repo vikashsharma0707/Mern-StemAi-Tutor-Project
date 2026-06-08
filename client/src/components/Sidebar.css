@@ -1,0 +1,19 @@
+.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 40; }
+.sidebar { position: fixed; left: 0; top: 0; width: 260px; height: 100vh; background: var(--bg-secondary); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; z-index: 50; }
+.sidebar-header { padding: 1.25rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+.sidebar-logo { display: flex; align-items: center; gap: 0.6rem; color: var(--text-primary); font-weight: 700; font-size: 1.15rem; }
+.sidebar-logo svg { color: var(--accent-indigo); }
+.sidebar-close { display: none; background: none; color: var(--text-muted); padding: 0.25rem; }
+.sidebar-nav { flex: 1; padding: 1rem 0; overflow-y: auto; }
+.sidebar-link { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.25rem; color: var(--text-secondary); font-weight: 500; font-size: 0.95rem; transition: var(--transition); }
+.sidebar-link:hover { background: var(--bg-hover); color: var(--text-primary); text-decoration: none; }
+.sidebar-link-active { background: rgba(99, 102, 241, 0.15); color: var(--accent-indigo); border-right: 3px solid var(--accent-indigo); }
+.sidebar-footer { padding: 1rem 1.25rem; border-top: 1px solid var(--border-color); }
+.sidebar-user { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+.sidebar-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent-indigo); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
+.sidebar-user-info { display: flex; flex-direction: column; overflow: hidden; }
+.sidebar-user-name { font-weight: 600; font-size: 0.9rem; color: var(--text-primary); }
+.sidebar-user-email { font-size: 0.75rem; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sidebar-logout { display: flex; align-items: center; gap: 0.5rem; width: 100%; padding: 0.6rem; background: none; color: var(--text-muted); font-size: 0.9rem; border-radius: var(--radius-sm); }
+.sidebar-logout:hover { background: rgba(239, 68, 68, 0.1); color: var(--accent-red); }
+@media (max-width: 768px) { .sidebar-overlay { display: block; } .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; } .sidebar-open { transform: translateX(0); } .sidebar-close { display: block; } }

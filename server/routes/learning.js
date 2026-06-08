@@ -1,0 +1,10 @@
+import express from 'express';
+import { generatePlan, getPlans, generateAdaptiveQuiz, submitAdaptiveAnswer, getQuizzes } from '../controllers/learningController.js';
+import { protect } from '../middleware/auth.js';
+const router = express.Router();
+router.post('/plan', protect, generatePlan);
+router.get('/plans', protect, getPlans);
+router.post('/quiz', protect, generateAdaptiveQuiz);
+router.post('/quiz/submit', protect, submitAdaptiveAnswer);
+router.get('/quizzes', protect, getQuizzes);
+export default router;

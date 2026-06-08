@@ -1,0 +1,61 @@
+.history-page { max-width: 900px; margin: 0 auto; }
+.history-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+.history-header-icon { width: 48px; height: 48px; border-radius: var(--radius-md); background: rgba(168, 85, 247, 0.15); color: #a855f7; display: flex; align-items: center; justify-content: center; }
+.history-header h1 { font-size: 1.3rem; font-weight: 600; }
+.history-header p { font-size: 0.85rem; color: var(--text-muted); }
+.history-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem; gap: 1rem; }
+.history-loading p { color: var(--text-muted); }
+.history-controls { display: flex; gap: 1rem; padding: 1rem 1.25rem; margin-bottom: 1rem; }
+.history-search { flex: 1; display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1rem; background: var(--bg-tertiary); border-radius: var(--radius-md); border: 1px solid var(--border-color); }
+.history-search svg { color: var(--text-muted); flex-shrink: 0; }
+.history-search input { flex: 1; background: transparent; border: none; color: var(--text-primary); font-size: 0.9rem; }
+.history-search input::placeholder { color: var(--text-muted); }
+.history-search input:focus { outline: none; }
+.history-filter { display: flex; align-items: center; gap: 0.5rem; }
+.history-filter svg { color: var(--text-muted); }
+.history-filter select { padding: 0.65rem 2rem 0.65rem 0.75rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-md); color: var(--text-primary); font-size: 0.9rem; }
+.history-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem; text-align: center; }
+.history-empty svg { color: var(--text-muted); margin-bottom: 1rem; opacity: 0.5; }
+.history-empty h2 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.history-empty p { color: var(--text-muted); font-size: 0.9rem; }
+.history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.history-item { padding: 1.25rem; transition: all 0.2s ease; }
+.history-item:hover { border-color: var(--accent-indigo); }
+.history-item.expanded { border-color: var(--accent-indigo); background: rgba(99, 102, 241, 0.02); }
+.history-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+.history-item-type { display: flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+.history-item-type.indigo { background: rgba(99, 102, 241, 0.15); color: var(--accent-indigo); }
+.history-item-type.green { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+.history-item-type.cyan { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); }
+.history-item-date { font-size: 0.8rem; color: var(--text-muted); }
+.history-item-content { margin-bottom: 0.75rem; }
+.history-item-title { font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem; }
+.history-item-topic { display: inline-block; font-size: 0.75rem; padding: 0.15rem 0.5rem; background: rgba(99, 102, 241, 0.1); color: var(--accent-indigo); border-radius: 9999px; margin-bottom: 0.5rem; }
+.history-item-preview { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.history-item-stats { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem; }
+.history-stat { font-size: 0.8rem; padding: 0.25rem 0.6rem; background: var(--bg-tertiary); border-radius: var(--radius-sm); color: var(--text-muted); }
+.history-stat.good { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+.history-stat.medium { background: rgba(245, 158, 11, 0.15); color: var(--accent-yellow); }
+.history-stat.low { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); }
+.history-item-actions { display: flex; gap: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); }
+.history-item-actions .btn { flex: 0; }
+.history-item-actions .btn-danger { background: rgba(239, 68, 68, 0.1); color: var(--accent-red); border-color: transparent; }
+.history-item-actions .btn-danger:hover { background: rgba(239, 68, 68, 0.2); }
+.history-item-details { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); animation: slideDown 0.2s ease; }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+.history-detail-section { margin-bottom: 1rem; }
+.history-detail-section:last-child { margin-bottom: 0; }
+.history-detail-section h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; }
+.history-detail-content { background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-md); max-height: 300px; overflow-y: auto; }
+.history-detail-content p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; white-space: pre-wrap; }
+.history-no-content { color: var(--text-muted); font-style: italic; }
+.history-messages { display: flex; flex-direction: column; gap: 0.75rem; }
+.history-message { padding: 0.75rem; border-radius: var(--radius-md); }
+.history-message.user { background: rgba(99, 102, 241, 0.1); border-left: 3px solid var(--accent-indigo); }
+.history-message.assistant { background: rgba(34, 211, 238, 0.1); border-left: 3px solid var(--accent-cyan); }
+.history-message-role { display: block; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.25rem; }
+.history-message.user .history-message-role { color: var(--accent-indigo); }
+.history-message.assistant .history-message-role { color: var(--accent-cyan); }
+.history-message-text { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+.history-explanation { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; white-space: pre-wrap; }
+@media (max-width: 768px) { .history-controls { flex-direction: column; } .history-filter { width: 100%; } .history-filter select { width: 100%; } .history-item-stats { flex-direction: column; gap: 0.5rem; } .history-item-actions { flex-wrap: wrap; } }
