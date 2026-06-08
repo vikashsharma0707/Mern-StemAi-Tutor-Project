@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { GraduationCap, Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import API from '../services/api';
+import { supabase } from '../utils/supabase';
 import './Login.css';
 
 export default function Login({ setUser }) {
@@ -16,13 +16,33 @@ export default function Login({ setUser }) {
     setError('');
     setLoading(true);
     try {
-      const { data } = await API.post('/auth/login', form);
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      setUser(data.user);
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
+        email: form.email,
+        password: form.password,
+      });
+      if (authError) throw authError;
+
+      // Fetch profile
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', data.user.id)
+        .single();
+
+      const userData = {
+        id: data.user.id,
+        email: data.user.email,
+        name: profile?.name || data.user.email?.split('@')[0],
+        streak: profile?.streak || 0,
+        topicsLearned: profile?.topics_learned || 0,
+        accuracy: profile?.accuracy || 0,
+      };
+
+      localStorage.setItem('user', JSON.stringify(userData));
+      setUser(userData);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+      setError(err.message || 'Login failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }

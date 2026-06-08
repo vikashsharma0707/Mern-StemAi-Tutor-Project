@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { GraduationCap, User, Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import API from '../services/api';
+import { supabase } from '../utils/supabase';
 import './Register.css';
 
 export default function Register({ setUser }) {
@@ -26,17 +26,36 @@ export default function Register({ setUser }) {
 
     setLoading(true);
     try {
-      const { data } = await API.post('/auth/register', {
-        name: form.name,
+      const { data, error: authError } = await supabase.auth.signUp({
         email: form.email,
         password: form.password,
       });
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      setUser(data.user);
+      if (authError) throw authError;
+
+      // Create profile
+      await supabase.from('profiles').insert({
+        id: data.user.id,
+        name: form.name,
+        email: form.email,
+        streak: 0,
+        topics_learned: 0,
+        accuracy: 0,
+      });
+
+      const userData = {
+        id: data.user.id,
+        email: data.user.email,
+        name: form.name,
+        streak: 0,
+        topicsLearned: 0,
+        accuracy: 0,
+      };
+
+      localStorage.setItem('user', JSON.stringify(userData));
+      setUser(userData);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed');
+      setError(err.message || 'Registration failed');
     } finally {
       setLoading(false);
     }
