@@ -2,85 +2,71 @@ name: Docker CI/CD
 
 on:
   push:
-    branches:
-      - main
-      - master
-
+    branches: [ main, master ]
   pull_request:
-    branches:
-      - main
-      - master
+    branches: [ main, master ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install Backend Dependencies
+      - name: Install & Build Backend
         working-directory: ./server
-        run: npm ci
+        run: |
+          npm ci
+          # npm test     # agar test hai to uncomment karo
 
-      - name: Install Frontend Dependencies
+      - name: Install & Build Frontend
         working-directory: ./client
-        run: npm ci
-
-      - name: Build Frontend
-        working-directory: ./client
-        run: npm run build
+        run: |
+          npm ci
+          npm run build
 
   build-and-push:
     needs: test
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Login to DockerHub
+      - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Backend Image
-        run: |
-          docker build \
-            -t vikashsharma0707/stemai-backend:latest \
-            -t vikashsharma0707/stemai-backend:${{ github.sha }} \
-            ./server
+      - name: Build & Push Backend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./server
+          push: true
+          tags: |
+            vikashsharma0707/stemai-backend:latest
+            vikashsharma0707/stemai-backend:${{ github.sha }}
 
-      - name: Push Backend Image
-        run: |
-          docker push vikashsharma0707/stemai-backend:latest
-          docker push vikashsharma0707/stemai-backend:${{ github.sha }}
+      - name: Build & Push Frontend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./client
+          push: true
+          tags: |
+            vikashsharma0707/stemai-frontend:latest
+            vikashsharma0707/stemai-frontend:${{ github.sha }}
 
-      - name: Build Frontend Image
+      - name: Show Success Message
         run: |
-          docker build \
-            -t vikashsharma0707/stemai-frontend:latest \
-            -t vikashsharma0707/stemai-frontend:${{ github.sha }} \
-            ./client
-
-      - name: Push Frontend Image
-        run: |
-          docker push vikashsharma0707/stemai-frontend:latest
-          docker push vikashsharma0707/stemai-frontend:${{ github.sha }}
-
-      - name: Success
-        run: |
-          echo "Docker images pushed successfully"
-          echo "Backend: vikashsharma0707/stemai-backend:latest"
-          echo "Frontend: vikashsharma0707/stemai-frontend:latest"
+          echo "✅ Successfully pushed images to Docker Hub!"
+          echo "Backend : vikashsharma0707/stemai-backend:${{ github.sha }}"
+          echo "Frontend: vikashsharma0707/stemai-frontend:${{ github.sha }}"
