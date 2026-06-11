@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: stemai-tutor
+  labels:
+    app: stemai-tutor
+    environment: production
