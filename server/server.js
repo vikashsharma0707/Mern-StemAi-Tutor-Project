@@ -36,6 +36,25 @@ app.use('/api/analytics', analyticsRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "🚀 STEMAI Tutor Backend is Live",
+    version: "1.0.0",
+    health: "/api/health",
+    docs: {
+      auth: "/api/auth",
+      chat: "/api/chat",
+      practice: "/api/practice",
+      image: "/api/image",
+      visualizer: "/api/visualizer",
+      learning: "/api/learning",
+      analytics: "/api/analytics",
+      history: "/api/history"
+    }
+  });
+});
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Server error' });
