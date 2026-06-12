@@ -1,1 +1,21 @@
-import './Auth.css';
+.auth-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; position: relative; overflow: hidden; }
+.auth-bg-shapes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.auth-shape { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; }
+.auth-shape-1 { width: 500px; height: 500px; background: var(--accent-indigo); top: -200px; left: -100px; }
+.auth-shape-2 { width: 400px; height: 400px; background: var(--accent-cyan); bottom: -150px; right: -80px; }
+.auth-container { width: 100%; max-width: 420px; position: relative; z-index: 10; }
+.auth-brand { text-align: center; margin-bottom: 2rem; }
+.auth-brand svg { color: var(--accent-indigo); margin-bottom: 0.5rem; }
+.auth-brand h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+.auth-brand p { color: var(--text-muted); font-size: 0.9rem; }
+.auth-form { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; backdrop-filter: blur(10px); }
+.auth-form h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; }
+.auth-subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+.auth-field { position: relative; margin-bottom: 1rem; }
+.auth-field-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.auth-field input { padding-left: 2.75rem; }
+.auth-toggle-password { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); background: none; color: var(--text-muted); padding: 0.25rem; }
+.auth-toggle-password:hover { color: var(--text-primary); }
+.auth-submit { width: 100%; margin-top: 0.5rem; }
+.auth-switch { text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem; }
+.auth-switch a { color: var(--accent-cyan); font-weight: 500; }
