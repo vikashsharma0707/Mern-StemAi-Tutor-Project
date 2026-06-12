@@ -7,7 +7,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'http://localhost:500',
+        target: 'https://mern-stemai-tutor-project.onrender.com',
         changeOrigin: true,
       },
     },
