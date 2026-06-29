@@ -1,113 +1,167 @@
-# STEMAI Tutor
+# 🚀 STEMAI Tutor - AI Powered STEM Learning Platform
 
-A modern MERN stack web application for STEM education.
+**An intelligent, interactive, and personalized AI tutor for STEM students.**
 
-## Tech Stack
+STEMAI Tutor combines the power of advanced AI models with a modern full-stack architecture to deliver an exceptional learning experience.
 
-- **Frontend**: React.js, Vite, React Router DOM, Axios
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB with Mongoose
-- **Authentication**: JWT, bcryptjs
+![Demo](https://via.placeholder.com/800x400?text=STEMAI+Tutor+Dashboard) <!-- Add real screenshot here -->
 
-## Project Structure
+## 🔗 Live Links
 
-```
+- **Live Demo (Vercel)**: [https://lnkd.in/dPFxTGpV](https://lnkd.in/dPFxTGpV)
+- **Backend (Render)**: [https://lnkd.in/dP3Bs3S8](https://lnkd.in/dP3Bs3S8)
+- **GitHub Repository**: [https://lnkd.in/dKWUu2Q6](https://lnkd.in/dKWUu2Q6)
+
+---
+
+## ✨ Features
+
+### **AI-Powered Learning**
+- **AI Chat Tutor** — Real-time step-by-step explanations using **Claude 3.5 Sonnet** & **Gemini Flash 1.5**
+- **Image Solver** — Upload handwritten or printed questions and get instant AI solutions
+- **Voice Input & Output** — Speak your questions and listen to answers
+- **Concept Visualizer** — AI-generated interactive Mermaid diagrams (Flowcharts, Mind Maps, etc.)
+- **Adaptive Quizzes** — Smart difficulty adjustment based on performance
+- **Practice Questions** — AI-generated questions with subject, topic & difficulty filters
+
+### **Personalization & Analytics**
+- **Personalized Learning Paths** — Weekly study plans tailored to your needs
+- **Progress Analytics** — Beautiful charts, accuracy heatmap, weak area detection
+- **History** — Complete record of chats, quizzes, and solved questions
+
+### **User Experience**
+- Secure JWT authentication
+- Fully responsive design
+- Clean and modern UI
+
+---
+
+## 🛠 Tech Stack
+
+### **Frontend**
+- React 18 + Vite
+- React Router DOM
+- Chart.js
+- Mermaid.js
+- Lucide Icons
+- Web Speech API (Voice)
+
+### **Backend**
+- Node.js + Express.js
+- MongoDB Atlas
+- JWT Authentication
+- bcryptjs
+
+### **AI Integration**
+- OpenRouter API
+- Claude 3.5 Sonnet
+- Gemini Flash 1.5
+
+### **DevOps & Deployment**
+- Docker & Docker Compose
+- Kubernetes (Deployments, Services, Ingress, Secrets)
+- GitHub Actions CI/CD
+- Docker Hub
+- Vercel (Frontend)
+- Render (Backend)
+
+---
+
+## 📁 Project Structure
 stemai-tutor/
-├── client/                 # React frontend
-│   ├── public/
-│   ├── src/
-│   │   ├── components/     # Reusable components
-│   │   ├── pages/          # Page components
-│   │   ├── services/       # API services
-│   │   ├── styles/         # Global CSS
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── index.html
-│   ├── package.json
-│   └── vite.config.js
-│
-├── server/                 # Express backend
-│   ├── config/             # Database config
-│   ├── controllers/        # Route controllers
-│   ├── middleware/         # Auth middleware
-│   ├── models/             # Mongoose models
-│   ├── routes/             # API routes
-│   ├── uploads/            # File uploads
-│   ├── .env
-│   ├── server.js
-│   └── package.json
-│
+├── client/                 # React Frontend
+├── server/                 # Node.js Backend
+├── kubernetes/             # K8s manifests
+├── .github/workflows/      # CI/CD pipeline
+├── docker-compose.yml
+├── .env.example
 └── README.md
-```
+text---
 
-## Installation
+## 🚀 Quick Start (Local Development)
 
 ### Prerequisites
 - Node.js 18+
-- MongoDB (local or Atlas)
+- MongoDB Atlas or local MongoDB
+- OpenRouter API Key
 
-### Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd stemai-tutor
-   ```
-
-2. **Install server dependencies**
-   ```bash
-   cd server
-   npm install
-   ```
-
-3. **Configure environment variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your MongoDB connection string and JWT secret
-   ```
-
-4. **Install client dependencies**
-   ```bash
-   cd ../client
-   npm install
-   ```
-
-## Running the Application
-
-### Development
-
-**Terminal 1 - Backend:**
+### 1. Clone the Repository
 ```bash
-cd server
+git clone <your-repo-url>
+cd stemai-tutor
+2. Setup Backend
+Bashcd server
+npm install
+cp .env.example .env
+# Add your MONGO_URI, JWT_SECRET, OPENROUTER_API_KEY
 npm run dev
-```
-
-**Terminal 2 - Frontend:**
-```bash
-cd client
+3. Setup Frontend
+Bashcd ../client
+npm install
 npm run dev
-```
 
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:5000
+🐳 Docker Setup
+Bash# Copy environment file
+cp .env.example .env
 
-### Production Build
+# Build and run
+docker-compose up --build -d
+Access the app at http://localhost
 
-```bash
-cd client
-npm run build
-```
+☸️ Kubernetes Deployment
+Bashkubectl apply -f kubernetes/namespace.yaml
+kubectl apply -f kubernetes/secret.yaml
+kubectl apply -f kubernetes/
 
-## API Endpoints
+📸 Screenshots
+(Add 4-6 screenshots here: Dashboard, AI Chat, Image Solver, Analytics, Quiz, Visualizer)
 
-| Method | Endpoint       | Description       | Auth |
-|--------|----------------|-------------------|------|
-| POST   | /api/auth/register | Register user  | No   |
-| POST   | /api/auth/login    | Login user     | No   |
-| GET    | /api/auth/me       | Get current user | Yes |
-| GET    | /api/users/profile | Get profile    | Yes  |
-| PUT    | /api/users/profile | Update profile | Yes  |
+🌟 What Makes STEMAI Tutor Special?
 
-## License
+Built in just 2 days during a hackathon
+Production-ready with Docker + Kubernetes
+Automated CI/CD pipeline
+Multi-AI model integration
+Focus on real learning outcomes
 
-MIT
+
+📝 Environment Variables
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VariableDescriptionRequiredMONGO_URIMongoDB connection stringYesJWT_SECRETSecret key for JWTYesOPENROUTER_API_KEYOpenRouter API keyYesNODE_ENVdevelopment or productionNo
+
+🤝 Contributing
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+📄 License
+This project is licensed under the MIT License.
+
+Made with ❤️ for students who want to learn better.
