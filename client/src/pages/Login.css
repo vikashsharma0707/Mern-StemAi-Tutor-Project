@@ -1,21 +1,1389 @@
-.auth-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; position: relative; overflow: hidden; }
-.auth-bg-shapes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.auth-shape { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; }
-.auth-shape-1 { width: 500px; height: 500px; background: var(--accent-indigo); top: -200px; left: -100px; }
-.auth-shape-2 { width: 400px; height: 400px; background: var(--accent-cyan); bottom: -150px; right: -80px; }
-.auth-container { width: 100%; max-width: 420px; position: relative; z-index: 10; }
-.auth-brand { text-align: center; margin-bottom: 2rem; }
-.auth-brand svg { color: var(--accent-indigo); margin-bottom: 0.5rem; }
-.auth-brand h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
-.auth-brand p { color: var(--text-muted); font-size: 0.9rem; }
-.auth-form { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; backdrop-filter: blur(10px); }
-.auth-form h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; }
-.auth-subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
-.auth-field { position: relative; margin-bottom: 1rem; }
-.auth-field-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
-.auth-field input { padding-left: 2.75rem; }
-.auth-toggle-password { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); background: none; color: var(--text-muted); padding: 0.25rem; }
-.auth-toggle-password:hover { color: var(--text-primary); }
-.auth-submit { width: 100%; margin-top: 0.5rem; }
-.auth-switch { text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem; }
-.auth-switch a { color: var(--accent-cyan); font-weight: 500; }
+/* =========================================================
+   STEMAI LOGIN
+   Premium 3D / 4D Animated UI
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(37, 99, 235, 0.14),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(124, 58, 237, 0.13),
+      transparent 35%
+    ),
+    #030712;
+
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.login-grid {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 55px 55px;
+
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+
+  opacity: 0.5;
+}
+
+/* =========================================================
+   GLOWS
+========================================================= */
+
+.login-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.login-glow-one {
+  width: 420px;
+  height: 420px;
+  left: -180px;
+  top: 10%;
+  background: rgba(37, 99, 235, 0.16);
+  animation: glowMoveOne 8s ease-in-out infinite;
+}
+
+.login-glow-two {
+  width: 500px;
+  height: 500px;
+  right: -200px;
+  bottom: -180px;
+  background: rgba(124, 58, 237, 0.16);
+  animation: glowMoveTwo 10s ease-in-out infinite;
+}
+
+.login-glow-three {
+  width: 260px;
+  height: 260px;
+  left: 45%;
+  top: -160px;
+  background: rgba(6, 182, 212, 0.08);
+  animation: glowMoveThree 7s ease-in-out infinite;
+}
+
+@keyframes glowMoveOne {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(60px, 40px);
+  }
+}
+
+@keyframes glowMoveTwo {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-60px, -40px);
+  }
+}
+
+@keyframes glowMoveThree {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(100px);
+  }
+}
+
+/* =========================================================
+   FLOATING ORBS
+========================================================= */
+
+.floating-orb {
+  position: absolute;
+
+  width: 80px;
+  height: 80px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(255, 255, 255, 0.55),
+      transparent 8%
+    ),
+    radial-gradient(
+      circle at 40% 35%,
+      rgba(59, 130, 246, 0.5),
+      rgba(37, 99, 235, 0.04) 60%,
+      transparent 72%
+    );
+
+  border: 1px solid rgba(96, 165, 250, 0.15);
+
+  box-shadow:
+    inset -15px -15px 35px rgba(0, 0, 0, 0.45),
+    0 0 45px rgba(37, 99, 235, 0.12);
+
+  backdrop-filter: blur(8px);
+
+  animation: floatingOrb 6s ease-in-out infinite;
+}
+
+.orb-one {
+  top: 14%;
+  left: 8%;
+}
+
+.orb-two {
+  right: 8%;
+  top: 20%;
+  width: 55px;
+  height: 55px;
+  animation-delay: -2s;
+}
+
+.orb-three {
+  right: 13%;
+  bottom: 15%;
+  width: 90px;
+  height: 90px;
+  animation-delay: -4s;
+}
+
+@keyframes floatingOrb {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(0, -22px, 25px) rotate(10deg);
+  }
+}
+
+/* =========================================================
+   STEM OBJECTS
+========================================================= */
+
+.stem-object {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: rgba(96, 165, 250, 0.4);
+
+  border: 1px solid rgba(96, 165, 250, 0.12);
+
+  background: rgba(15, 23, 42, 0.25);
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    inset 0 0 20px rgba(59, 130, 246, 0.04),
+    0 20px 50px rgba(0, 0, 0, 0.25);
+
+  transform-style: preserve-3d;
+
+  animation: stemFloat 7s ease-in-out infinite;
+}
+
+.stem-atom {
+  width: 90px;
+  height: 90px;
+  border-radius: 24px;
+
+  right: 15%;
+  top: 10%;
+
+  transform: rotateX(20deg) rotateY(-20deg);
+}
+
+.stem-brain {
+  width: 75px;
+  height: 75px;
+  border-radius: 22px;
+
+  left: 6%;
+  bottom: 16%;
+
+  animation-delay: -2s;
+}
+
+.stem-spark {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+
+  right: 5%;
+  bottom: 35%;
+
+  animation-delay: -4s;
+}
+
+@keyframes stemFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateX(10deg) rotateY(-10deg);
+  }
+
+  50% {
+    transform: translate3d(0, -25px, 30px)
+      rotateX(25deg)
+      rotateY(20deg);
+  }
+}
+
+/* =========================================================
+   MAIN WRAPPER
+========================================================= */
+
+.login-wrapper {
+  position: relative;
+  z-index: 5;
+
+  width: min(1180px, 100%);
+
+  display: grid;
+  grid-template-columns: 1fr 480px;
+
+  gap: 70px;
+
+  align-items: center;
+}
+
+/* =========================================================
+   LEFT SHOWCASE
+========================================================= */
+
+.login-showcase {
+  position: relative;
+
+  min-height: 650px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 40px;
+}
+
+.showcase-badge {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 8px 13px;
+
+  border-radius: 999px;
+
+  color: #93c5fd;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  background: rgba(37, 99, 235, 0.09);
+
+  border: 1px solid rgba(96, 165, 250, 0.18);
+
+  box-shadow:
+    0 0 25px rgba(37, 99, 235, 0.08);
+
+  animation: badgePulse 3s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%,
+  100% {
+    box-shadow: 0 0 25px rgba(37, 99, 235, 0.08);
+  }
+
+  50% {
+    box-shadow: 0 0 35px rgba(37, 99, 235, 0.18);
+  }
+}
+
+.login-showcase h1 {
+  margin: 25px 0 20px;
+
+  max-width: 620px;
+
+  font-size: clamp(42px, 5vw, 70px);
+
+  line-height: 1.02;
+
+  letter-spacing: -0.045em;
+
+  font-weight: 800;
+}
+
+.login-showcase h1 span {
+  display: block;
+
+  background: linear-gradient(
+    90deg,
+    #60a5fa,
+    #22d3ee,
+    #a78bfa
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  background-size: 200% auto;
+
+  animation: gradientFlow 5s linear infinite;
+}
+
+.login-showcase h1 strong {
+  display: block;
+
+  font-weight: 800;
+
+  color: #f8fafc;
+}
+
+@keyframes gradientFlow {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.login-showcase > p {
+  max-width: 540px;
+
+  color: #94a3b8;
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.showcase-features {
+  display: flex;
+  flex-direction: column;
+
+  gap: 13px;
+
+  margin-top: 34px;
+}
+
+.showcase-feature {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  width: fit-content;
+
+  padding: 10px 14px;
+
+  border-radius: 14px;
+
+  background: rgba(15, 23, 42, 0.28);
+
+  border: 1px solid rgba(255, 255, 255, 0.055);
+
+  backdrop-filter: blur(12px);
+
+  transition: 0.3s ease;
+}
+
+.showcase-feature:hover {
+  transform: translateX(8px) translateZ(15px);
+
+  border-color: rgba(96, 165, 250, 0.2);
+
+  background: rgba(30, 41, 59, 0.35);
+}
+
+.feature-icon {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  color: #60a5fa;
+
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.showcase-feature h3 {
+  margin: 0;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  color: #e2e8f0;
+}
+
+.showcase-feature span {
+  display: block;
+
+  margin-top: 2px;
+
+  font-size: 11px;
+
+  color: #64748b;
+}
+
+/* =========================================================
+   3D RING
+========================================================= */
+
+.hero-ring {
+  position: absolute;
+
+  right: 30px;
+  bottom: 20px;
+
+  width: 230px;
+  height: 230px;
+
+  perspective: 700px;
+
+  transform-style: preserve-3d;
+
+  animation: ringFloat 8s ease-in-out infinite;
+}
+
+.ring {
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(96, 165, 250, 0.12);
+
+  transform-style: preserve-3d;
+}
+
+.ring-1 {
+  transform: rotateX(65deg) rotateZ(15deg);
+  animation: ringRotateOne 8s linear infinite;
+}
+
+.ring-2 {
+  transform: rotateY(65deg) rotateZ(20deg);
+  animation: ringRotateTwo 9s linear infinite;
+}
+
+.ring-3 {
+  transform: rotateX(70deg) rotateY(20deg);
+  animation: ringRotateThree 11s linear infinite;
+}
+
+@keyframes ringRotateOne {
+  to {
+    transform: rotateX(65deg) rotateZ(375deg);
+  }
+}
+
+@keyframes ringRotateTwo {
+  to {
+    transform: rotateY(425deg) rotateZ(20deg);
+  }
+}
+
+@keyframes ringRotateThree {
+  to {
+    transform: rotateX(430deg) rotateY(20deg);
+  }
+}
+
+@keyframes ringFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotateX(5deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotateX(12deg);
+  }
+}
+
+.ring-center {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 78px;
+  height: 78px;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 22px;
+
+  color: #93c5fd;
+
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(96, 165, 250, 0.2),
+      transparent 60%
+    ),
+    rgba(15, 23, 42, 0.75);
+
+  border: 1px solid rgba(96, 165, 250, 0.2);
+
+  box-shadow:
+    0 0 45px rgba(37, 99, 235, 0.14),
+    inset 0 0 25px rgba(37, 99, 235, 0.08);
+
+  backdrop-filter: blur(10px);
+}
+
+.orbit-dot {
+  position: absolute;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #60a5fa;
+
+  box-shadow: 0 0 15px #3b82f6;
+}
+
+.orbit-dot-1 {
+  top: 12px;
+  left: 45%;
+}
+
+.orbit-dot-2 {
+  right: 15px;
+  top: 46%;
+}
+
+.orbit-dot-3 {
+  left: 20px;
+  bottom: 25%;
+}
+
+/* =========================================================
+   LOGIN CARD
+========================================================= */
+
+.login-card-wrapper {
+  position: relative;
+
+  perspective: 1200px;
+}
+
+.login-card-glow {
+  position: absolute;
+
+  inset: -30px;
+
+  border-radius: 40px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(59, 130, 246, 0.16),
+      transparent 65%
+    );
+
+  filter: blur(35px);
+
+  animation: cardGlow 5s ease-in-out infinite;
+}
+
+@keyframes cardGlow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.login-card {
+  position: relative;
+
+  padding: 38px;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15, 23, 42, 0.88),
+      rgba(8, 15, 30, 0.82)
+    );
+
+  border: 1px solid rgba(148, 163, 184, 0.13);
+
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(25px);
+
+  transform-style: preserve-3d;
+
+  animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform:
+      translateY(35px)
+      rotateX(8deg)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      rotateX(0)
+      scale(1);
+  }
+}
+
+.card-top-line {
+  position: absolute;
+
+  top: 0;
+  left: 15%;
+
+  width: 70%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(96, 165, 250, 0.65),
+    rgba(167, 139, 250, 0.65),
+    transparent
+  );
+
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.login-logo {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+}
+
+.logo-icon {
+  width: 43px;
+  height: 43px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  color: #bfdbfe;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(59, 130, 246, 0.25),
+      rgba(124, 58, 237, 0.18)
+    );
+
+  border: 1px solid rgba(96, 165, 250, 0.2);
+
+  box-shadow:
+    0 8px 25px rgba(37, 99, 235, 0.12);
+}
+
+.login-logo span {
+  display: block;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+}
+
+.login-logo small {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #64748b;
+
+  font-size: 8px;
+
+  letter-spacing: 0.25em;
+}
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.login-heading {
+  margin-top: 35px;
+}
+
+.welcome-tag {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  color: #60a5fa;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.12em;
+}
+
+.login-heading h2 {
+  margin: 10px 0 10px;
+
+  font-size: 30px;
+
+  line-height: 1.15;
+
+  letter-spacing: -0.035em;
+}
+
+.login-heading h2 span {
+  display: block;
+
+  background: linear-gradient(
+    90deg,
+    #f8fafc,
+    #94a3b8
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+.login-heading p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.login-error {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 22px;
+
+  padding: 11px 13px;
+
+  border-radius: 11px;
+
+  color: #fca5a5;
+
+  font-size: 12px;
+
+  background: rgba(127, 29, 29, 0.15);
+
+  border: 1px solid rgba(248, 113, 113, 0.15);
+
+  animation: errorShake 0.35s ease;
+}
+
+.error-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #f87171;
+
+  box-shadow: 0 0 10px rgba(248, 113, 113, 0.7);
+}
+
+@keyframes errorShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.login-card form {
+  margin-top: 27px;
+}
+
+.login-field {
+  margin-bottom: 20px;
+}
+
+.login-field label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #cbd5e1;
+
+  font-size: 12px;
+
+  font-weight: 500;
+}
+
+.password-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.password-label label {
+  margin-bottom: 8px;
+}
+
+.forgot-password {
+  padding: 0;
+
+  border: none;
+
+  background: none;
+
+  color: #60a5fa;
+
+  cursor: pointer;
+
+  font-size: 10px;
+
+  margin-bottom: 8px;
+}
+
+.input-wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+
+  color: #475569;
+
+  pointer-events: none;
+
+  transition: 0.25s ease;
+}
+
+.input-wrapper input {
+  width: 100%;
+
+  height: 52px;
+
+  padding: 0 45px;
+
+  border-radius: 13px;
+
+  outline: none;
+
+  border: 1px solid rgba(148, 163, 184, 0.11);
+
+  background: rgba(2, 6, 23, 0.55);
+
+  color: #f8fafc;
+
+  font-size: 13px;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.input-wrapper input::placeholder {
+  color: #475569;
+}
+
+.input-wrapper input:focus {
+  border-color: rgba(59, 130, 246, 0.55);
+
+  background: rgba(2, 6, 23, 0.75);
+
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, 0.08),
+    0 0 30px rgba(37, 99, 235, 0.06);
+}
+
+.input-wrapper:focus-within .input-icon {
+  color: #60a5fa;
+}
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.password-toggle {
+  position: absolute;
+
+  right: 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  background: transparent;
+
+  color: #475569;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: #93c5fd;
+}
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+.login-submit {
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  height: 53px;
+
+  margin-top: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  border: 1px solid rgba(96, 165, 250, 0.25);
+
+  border-radius: 13px;
+
+  color: white;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #4f46e5
+    );
+
+  box-shadow:
+    0 15px 35px rgba(37, 99, 235, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.login-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 20px 45px rgba(37, 99, 235, 0.3),
+    0 0 30px rgba(79, 70, 229, 0.12);
+}
+
+.login-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.button-shine {
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  animation: buttonShine 4s infinite;
+}
+
+@keyframes buttonShine {
+  0% {
+    left: -100%;
+  }
+
+  25%,
+  100% {
+    left: 150%;
+  }
+}
+
+/* =========================================================
+   SPINNER
+========================================================= */
+
+.login-spinner {
+  width: 17px;
+  height: 17px;
+
+  border: 2px solid rgba(255, 255, 255, 0.25);
+
+  border-top-color: white;
+
+  border-radius: 50%;
+
+  animation: spinner 0.7s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.login-divider {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 27px 0 20px;
+}
+
+.login-divider span {
+  flex: 1;
+
+  height: 1px;
+
+  background: rgba(148, 163, 184, 0.08);
+}
+
+.login-divider p {
+  margin: 0;
+
+  color: #475569;
+
+  font-size: 9px;
+
+  letter-spacing: 0.12em;
+}
+
+/* =========================================================
+   REGISTER
+========================================================= */
+
+.register-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+.register-text a {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 4px;
+
+  color: #60a5fa;
+
+  text-decoration: none;
+
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.register-text a:hover {
+  color: #93c5fd;
+
+  gap: 7px;
+}
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+.login-security {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  margin-top: 25px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid rgba(148, 163, 184, 0.07);
+
+  color: #475569;
+
+  font-size: 10px;
+}
+
+.login-security svg {
+  color: #34d399;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.login-footer {
+  position: absolute;
+
+  z-index: 5;
+
+  left: 30px;
+  right: 30px;
+  bottom: 18px;
+
+  display: flex;
+  justify-content: space-between;
+
+  color: #334155;
+
+  font-size: 9px;
+
+  letter-spacing: 0.03em;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1050px) {
+  .login-wrapper {
+    grid-template-columns: 1fr 430px;
+
+    gap: 35px;
+  }
+
+  .login-showcase {
+    padding: 20px;
+  }
+
+  .login-showcase h1 {
+    font-size: 50px;
+  }
+
+  .hero-ring {
+    width: 170px;
+    height: 170px;
+
+    right: 0;
+  }
+}
+
+@media (max-width: 850px) {
+  .login-page {
+    padding: 30px 18px;
+  }
+
+  .login-wrapper {
+    display: block;
+
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .login-showcase {
+    min-height: auto;
+
+    padding: 10px 5px 35px;
+
+    text-align: center;
+
+    align-items: center;
+  }
+
+  .login-showcase h1 {
+    font-size: 43px;
+  }
+
+  .login-showcase > p {
+    font-size: 13px;
+  }
+
+  .showcase-features {
+    display: none;
+  }
+
+  .hero-ring {
+    display: none;
+  }
+
+  .stem-object,
+  .floating-orb {
+    opacity: 0.35;
+  }
+
+  .login-card {
+    padding: 30px 25px;
+  }
+
+  .login-footer {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .login-page {
+    padding: 20px 14px;
+  }
+
+  .login-showcase h1 {
+    font-size: 35px;
+  }
+
+  .login-showcase > p {
+    display: none;
+  }
+
+  .login-card {
+    padding: 27px 20px;
+
+    border-radius: 22px;
+  }
+
+  .login-heading {
+    margin-top: 28px;
+  }
+
+  .login-heading h2 {
+    font-size: 26px;
+  }
+
+  .login-card form {
+    margin-top: 23px;
+  }
+
+  .input-wrapper input {
+    height: 50px;
+  }
+
+  .login-submit {
+    height: 51px;
+  }
+
+  .stem-object {
+    display: none;
+  }
+}
